@@ -33,6 +33,26 @@ const environmentMapTexture = cubeTextureLoader.load([
 ])
 
 /**
+ * Physics
+ */
+// World
+const world = new CANNON.World()
+world.broadphase = new CANNON.SAPBroadphase(world)
+world.allowSleep = true
+world.gravity.set(0, - 9.82, 0)
+  const defaultMaterial = new CANNON.Material('default')
+  const defaultContactMaterial = new CANNON.ContactMaterial(
+      defaultMaterial,
+      defaultMaterial,
+      {
+        friction: 0.1,
+        restitution: 0.7
+      }
+  )
+  world.addContactMaterial(defaultContactMaterial)
+  world.defaultContactMaterial = defaultContactMaterial
+
+/**
  * Test sphere
  */
 const sphere = new THREE.Mesh(
@@ -52,7 +72,7 @@ scene.add(sphere)
  * Floor
  */
 const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(10, 10),
+    new THREE.PlaneGeometry(100, 10),
     new THREE.MeshStandardMaterial({
         color: '#777777',
         metalness: 0.3,
@@ -63,6 +83,7 @@ const floor = new THREE.Mesh(
 )
 floor.receiveShadow = true
 floor.rotation.x = - Math.PI * 0.5
+floor.rotation.z = Math.PI * 0.25
 scene.add(floor)
 
 /**
@@ -79,7 +100,7 @@ directionalLight.shadow.camera.left = - 7
 directionalLight.shadow.camera.top = 7
 directionalLight.shadow.camera.right = 7
 directionalLight.shadow.camera.bottom = - 7
-directionalLight.position.set(5, 5, 5)
+directionalLight.position.set(10, 5, 5)
 scene.add(directionalLight)
 
 /**
@@ -110,7 +131,7 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.set(- 3, 3, 3)
+camera.position.set(- 3, 2, 3)
 scene.add(camera)
 
 // Controls
