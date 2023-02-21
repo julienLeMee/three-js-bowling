@@ -103,7 +103,7 @@ directionalLight.shadow.camera.bottom = - 7
 directionalLight.position.set(10, 5, 5)
 scene.add(directionalLight)
 
-const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.3)
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.1)
 directionalLight2.castShadow = true
 directionalLight2.shadow.mapSize.set(1024, 1024)
 directionalLight2.shadow.camera.far = 15
@@ -111,7 +111,7 @@ directionalLight2.shadow.camera.left = - 7
 directionalLight2.shadow.camera.top = 7
 directionalLight2.shadow.camera.right = 7
 directionalLight2.shadow.camera.bottom = - 7
-directionalLight2.position.set(-5, 5, -150)
+directionalLight2.position.set(250, 1, -10)
 scene.add(directionalLight2)
 
 /**
@@ -143,6 +143,7 @@ window.addEventListener('resize', () =>
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
 camera.position.set(- 3, 2, 3)
+camera.position.z = - 0.1
 scene.add(camera)
 
 // Controls
@@ -170,6 +171,7 @@ const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
 
+    // sphere.position.x += elapsedTime * 0.5
     // Update controls
     controls.update()
 
