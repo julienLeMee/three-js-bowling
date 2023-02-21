@@ -103,6 +103,17 @@ directionalLight.shadow.camera.bottom = - 7
 directionalLight.position.set(10, 5, 5)
 scene.add(directionalLight)
 
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.3)
+directionalLight2.castShadow = true
+directionalLight2.shadow.mapSize.set(1024, 1024)
+directionalLight2.shadow.camera.far = 15
+directionalLight2.shadow.camera.left = - 7
+directionalLight2.shadow.camera.top = 7
+directionalLight2.shadow.camera.right = 7
+directionalLight2.shadow.camera.bottom = - 7
+directionalLight2.position.set(-5, 5, -150)
+scene.add(directionalLight2)
+
 /**
  * Sizes
  */
