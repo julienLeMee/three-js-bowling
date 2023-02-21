@@ -69,6 +69,17 @@ world.gravity.set(0, - 9.82, 0)
   world.addContactMaterial(defaultContactMaterial)
   world.defaultContactMaterial = defaultContactMaterial
 
+//   // Sphere
+// const sphereShape = new CANNON.Sphere(0.5) // same radius as THREE.SphereGeometry
+// const sphereBody = new CANNON.Body({
+//     mass: 1,
+//     position: new CANNON.Vec3(0, 3, 0),
+//     shape: sphereShape,
+//     material: defaultMaterial
+// })
+// sphereBody.applyLocalForce(new CANNON.Vec3(150, 0, 0), new CANNON.Vec3(0, 0, 0))
+// world.addBody(sphereBody)
+
 // Floor
 const floorShape = new CANNON.Plane()
 const floorBody = new CANNON.Body()
@@ -204,6 +215,7 @@ const createSphere = (radius, position) =>
         // shape, ( when the key and the value have the same name, we can just write the value )
         material: defaultMaterial
     })
+    world.addBody(body)
     body.position.copy(position)
     body.addEventListener('collide', playHitSound)
     world.addBody(body)
@@ -213,9 +225,18 @@ const createSphere = (radius, position) =>
         mesh: mesh,
         body: body
     })
+
+    // Play Button
+    const playButton = document.getElementById('playButton');
+
+    playButton.addEventListener('click', () =>
+    {
+      body.applyLocalForce(new CANNON.Vec3(1500, 0, 0), new CANNON.Vec3(0, 0, 0))
+    })
 }
 
-createSphere(0.25, { x: 0, y: 1, z: 0 })
+createSphere(0.25, { x: 0, y: 0, z: 0 })
+
 
 // Box
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
@@ -252,6 +273,14 @@ const createBox = (width, height, depth, position) =>
 }
 
 createBox(1, 1.5, 2, { x: 10, y: 0.7, z: 0 })
+
+// Play Button
+// const playButton = document.getElementById('playButton');
+
+// playButton.addEventListener('click', () =>
+// {
+//   body.applyLocalForce(new CANNON.Vec3(150, 0, 0), new CANNON.Vec3(0, 0, 0))
+// })
 
 /**
  * Animate
