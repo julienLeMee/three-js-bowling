@@ -273,6 +273,8 @@ const createBox = (width, height, depth, position) =>
 }
 
 createBox(1, 1.5, 2, { x: 10, y: 0.7, z: 0 })
+createBox(1, 1.5, 2, { x: 10, y: 0.7, z: 2.1 })
+createBox(1, 1.5, 2, { x: 10, y: 0.7, z: -2.1 })
 
 // Play Button
 // const playButton = document.getElementById('playButton');
