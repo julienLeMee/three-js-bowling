@@ -89,6 +89,17 @@ floorBody.addShape(floorShape)
 floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(- 1, 0, 0), Math.PI * 0.5)
 world.addBody(floorBody)
 
+// Walls
+// const wallShape = new CANNON.Plane()
+// const wallBody = new CANNON.Body()
+// wallBody.material = defaultMaterial
+// wallBody.mass = 0 // mass = 0 makes the body static
+// wallBody.addShape(wallShape)
+// wallBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, - 1), Math.PI * 0.5)
+// wallBody.position.set(0, 2.5, - 5)
+// world.addBody(wallBody)
+
+
 /**
  * Floor
  */
@@ -108,6 +119,41 @@ floor.position.x = 40
 scene.add(floor)
 
 /**
+ * Walls
+ */
+const leftWall = new THREE.Mesh(
+    new THREE.BoxGeometry(100, 5, 0.1),
+    new THREE.MeshStandardMaterial({
+        color: '#777777',
+        metalness: 0.3,
+        roughness: 0.4,
+        envMap: environmentMapTexture,
+        envMapIntensity: 0.5
+    })
+)
+leftWall.receiveShadow = true
+leftWall.position.x = 40
+leftWall.position.y = 2.5
+leftWall.position.z = - 5
+scene.add(leftWall)
+
+const rightWall = new THREE.Mesh(
+    new THREE.BoxGeometry(100, 5, 0.1),
+    new THREE.MeshStandardMaterial({
+        color: '#777777',
+        metalness: 0.3,
+        roughness: 0.4,
+        envMap: environmentMapTexture,
+        envMapIntensity: 0.5
+    })
+)
+rightWall.receiveShadow = true
+rightWall.position.x = 40
+rightWall.position.y = 2.5
+rightWall.position.z = 5
+scene.add(rightWall)
+
+/**
  * Lights
  */
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.7)
@@ -121,7 +167,7 @@ directionalLight.shadow.camera.left = - 7
 directionalLight.shadow.camera.top = 7
 directionalLight.shadow.camera.right = 7
 directionalLight.shadow.camera.bottom = - 7
-directionalLight.position.set(10, 5, 5)
+directionalLight.position.set(7, 5, 0)
 scene.add(directionalLight)
 
 const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.1)
@@ -134,6 +180,17 @@ directionalLight2.shadow.camera.right = 7
 directionalLight2.shadow.camera.bottom = - 7
 directionalLight2.position.set(250, 1, -10)
 scene.add(directionalLight2)
+
+const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.1)
+directionalLight3.castShadow = true
+directionalLight3.shadow.mapSize.set(1024, 1024)
+directionalLight3.shadow.camera.far = 15
+directionalLight3.shadow.camera.left = - 7
+directionalLight3.shadow.camera.top = 7
+directionalLight3.shadow.camera.right = 7
+directionalLight2.shadow.camera.bottom = - 7
+directionalLight3.position.set(250, 1, 10)
+scene.add(directionalLight3)
 
 /**
  * Sizes
@@ -238,7 +295,6 @@ const createSphere = (radius, position) =>
 
 createSphere(0.25, { x: 0, y: 0, z: 0 })
 
-
 // Box
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
 const boxMaterial = new THREE.MeshStandardMaterial({
@@ -266,21 +322,22 @@ const createBox = (width, height, depth, position) =>
         material: defaultMaterial
     })
     body.position.copy(position)
-    body.addEventListener('collide', playHitSound)
+    // body.addEventListener('collide', playHitSound)
     world.addBody(body)
 
     // Save in objects
     objectsToUpdate.push({ mesh, body })
 }
 
-// middle kettle
-// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 0 })
+// Kettles
 let px = 10
 let pxRight = 10
 let pxLeft = 10
 let pxRight1 = 10
 let pxLeft1 = 10
 
+// middle kettles
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 0 })
 for(let i = 0; i < 20; i++)
 {
     createBox(0.25, 0.5, 1, { x: px, y: 0.7, z: 0 })
@@ -296,6 +353,7 @@ for(let i = 0; i < 20; i++)
 }
 
 // right + 1 kettles
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 2.2 })
 for(let i = 0; i < 20; i++)
 {
     createBox(0.25, 0.5, 1, { x: pxRight, y: 0.7, z: 2.2 })
@@ -311,6 +369,7 @@ for(let i = 0; i < 20; i++)
 }
 
 // left + 1 kettles
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: -2.2 })
 for (let i = 0; i < 20; i++)
 {
     createBox(0.25, 0.5, 1, { x: pxLeft1, y: 0.7, z: - 2.2 })
