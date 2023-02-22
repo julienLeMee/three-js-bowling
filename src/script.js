@@ -208,7 +208,7 @@ const createSphere = (radius, position) =>
     // Cannon.js body
     const shape = new CANNON.Sphere(radius)
     const body = new CANNON.Body({
-        mass: 1,
+        mass: 2,
         position: new CANNON.Vec3(0, 3, 0),
         shape: shape,
         // same as:
@@ -231,7 +231,8 @@ const createSphere = (radius, position) =>
 
     playButton.addEventListener('click', () =>
     {
-      body.applyLocalForce(new CANNON.Vec3(1500, 0, 0), new CANNON.Vec3(0, 0, 0))
+      body.applyLocalForce(new CANNON.Vec3(5000, 0, 0), new CANNON.Vec3(0, 0, 0))
+      playButton.disabled = true;
     })
 }
 
@@ -259,7 +260,7 @@ const createBox = (width, height, depth, position) =>
     const shape = new CANNON.Box(new CANNON.Vec3(width * 0.5, height * 0.5, depth * 0.5))
 
     const body = new CANNON.Body({
-        mass: 1,
+        mass: 0.5,
         position: new CANNON.Vec3(0, 0, 0),
         shape: shape,
         material: defaultMaterial
@@ -272,9 +273,50 @@ const createBox = (width, height, depth, position) =>
     objectsToUpdate.push({ mesh, body })
 }
 
-createBox(1, 1.5, 2, { x: 10, y: 0.7, z: 0 })
-createBox(1, 1.5, 2, { x: 10, y: 0.7, z: 2.1 })
-createBox(1, 1.5, 2, { x: 10, y: 0.7, z: -2.1 })
+// middle kettle
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 0 })
+let px = 10
+let pxRight = 10
+let pxLeft = 10
+let pxRight1 = 10
+let pxLeft1 = 10
+
+for(let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: px, y: 0.7, z: 0 })
+    px += 1
+}
+
+// right kettles
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 1.1 })
+for(let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: pxRight1, y: 0.7, z: 1.1 })
+    pxRight1 += 1
+}
+
+// right + 1 kettles
+for(let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: pxRight, y: 0.7, z: 2.2 })
+    pxRight += 1
+}
+
+// left kettles
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: -1.1 })
+for(let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: pxLeft, y: 0.7, z: - 1.1 })
+    pxLeft += 1
+}
+
+// left + 1 kettles
+for (let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: pxLeft1, y: 0.7, z: - 2.2 })
+    pxLeft1 += 1
+}
+
 
 // Play Button
 // const playButton = document.getElementById('playButton');
