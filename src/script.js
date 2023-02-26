@@ -345,36 +345,36 @@ for(let i = 0; i < 20; i++)
 }
 
 // right kettles
-createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 1.1 })
-// for(let i = 0; i < 20; i++)
-// {
-//     createBox(0.25, 0.5, 1, { x: pxRight1, y: 0.7, z: 1.1 })
-//     pxRight1 += 1
-// }
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 1.1 })
+for(let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: pxRight1, y: 0.7, z: 1.1 })
+    pxRight1 += 1
+}
 
 // right + 1 kettles
-createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 2.2 })
-// for(let i = 0; i < 20; i++)
-// {
-//     createBox(0.25, 0.5, 1, { x: pxRight, y: 0.7, z: 2.2 })
-//     pxRight += 1
-// }
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: 2.2 })
+for(let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: pxRight, y: 0.7, z: 2.2 })
+    pxRight += 1
+}
 
 // left kettles
-createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: -1.1 })
-// for(let i = 0; i < 20; i++)
-// {
-//     createBox(0.25, 0.5, 1, { x: pxLeft, y: 0.7, z: - 1.1 })
-//     pxLeft += 1
-// }
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: -1.1 })
+for(let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: pxLeft, y: 0.7, z: - 1.1 })
+    pxLeft += 1
+}
 
 // left + 1 kettles
-createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: -2.2 })
-// for (let i = 0; i < 20; i++)
-// {
-//     createBox(0.25, 0.5, 1, { x: pxLeft1, y: 0.7, z: - 2.2 })
-//     pxLeft1 += 1
-// }
+// createBox(0.25, 0.5, 1, { x: 10, y: 0.7, z: -2.2 })
+for (let i = 0; i < 20; i++)
+{
+    createBox(0.25, 0.5, 1, { x: pxLeft1, y: 0.7, z: - 2.2 })
+    pxLeft1 += 1
+}
 
 
 // Play Button
